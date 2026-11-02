@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Workout;
 
 class WorkoutController extends Controller
 {
@@ -27,8 +28,16 @@ class WorkoutController extends Controller
      */
     public function store(Request $request)
     {
-        $id = $request->id;
-        $name = $request->name;
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'date' => 'required|date',
+            'notes' => 'nullable|string',
+        ]);
+
+        // Create the workout with the validated data
+        $workout = Workout::create($validatedData);
+
+        return redirect()->route('workouts.index')->with('success', 'Workout created successfully.');
     }
 
     /**

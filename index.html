@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User - Laravel API</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f8;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 12px;
+            background: #eee;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Create New User</h2>
+
+    <form id="userForm">
+
+        <label>Name</label>
+        <input type="text" id="name" required
+               placeholder="Enter your name">
+
+        <label>Email</label>
+        <input type="email" id="email" required
+               placeholder="Enter your email">
+
+        <label>Password</label>
+        <input type="password" id="password" required
+               placeholder="Enter your password">
+
+        <button type="submit">Create User</button>
+
+    </form>
+
+    <div id="result">API response will appear here...</div>
+
+</div>
+
+<script>
+
+const form = document.getElementById("userForm");
+const result = document.getElementById("result");
+
+form.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    // Get form values
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    // Prepare JSON data
+    const data = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    try {
+
+        // Send POST request
+        const response = await fetch(
+            "http://127.0.0.1:8000/api/users",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+
+                body: JSON.stringify(data)
+            }
+        );
+
+        // Read API response
+        const responseData = await response.json();
+
+        result.textContent =
+            "HTTP Status: " + response.status + "\n\n" +
+            JSON.stringify(responseData, null, 4);
+
+        if (response.ok) {
+            form.reset();
+        }
+
+    } catch (error) {
+
+        result.textContent = "Error: " + error.message;
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
