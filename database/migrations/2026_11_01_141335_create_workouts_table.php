@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('workouts', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->id('workout_id')->primary();
+            $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
             $table->string('name');
             $table->date('date');
             $table->text('note')->nullable();

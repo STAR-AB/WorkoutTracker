@@ -12,7 +12,8 @@ class WorkoutController extends Controller
      */
     public function index()
     {
-        return view('workouts.index');
+        $workouts = Workout::all();
+        return view('workouts.index' , ['workouts' => $workouts]);
     }
 
     /**
