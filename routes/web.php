@@ -5,10 +5,10 @@ use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\UserController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::resource('users', UserController::class);
-Route::resource('workouts', WorkoutController::class);
+// Route::resource('workouts', WorkoutController::class);
 

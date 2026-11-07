@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<x-layout>
     <h1>Users</h1>
     <form action="{{ route('users.update', $user->id) }}" method="POST">
         @csrf
@@ -25,5 +18,4 @@
 
         <button type="submit">Update User</button>
     </form>
-</body>
-</html>
+</x-layout>

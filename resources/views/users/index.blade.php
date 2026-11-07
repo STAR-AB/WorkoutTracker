@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>Document</title>
-</head>
 <style>
     table {
         border-collapse: collapse;
@@ -24,8 +15,7 @@
         text-align: left;
     }
 </style>
-
-<body>
+<x-layout>
     <h1>Users</h1>
     <table border="1">
         <thead>
@@ -60,7 +50,4 @@
             @endforeach
         </tbody>
     </table>
-
-</body>
-
-</html>
+</x-layout>
