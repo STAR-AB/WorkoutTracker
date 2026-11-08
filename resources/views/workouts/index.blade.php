@@ -1,4 +1,21 @@
-<x-layout>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        text-align: left;
+    }
+</style>
+<x-layout >
         <h2>list of workouts</h2>
         <table>
             <thead>
