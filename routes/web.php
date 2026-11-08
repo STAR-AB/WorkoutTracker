@@ -10,5 +10,8 @@ use App\Http\Controllers\UserController;
 // });
 
 Route::resource('users', UserController::class);
- Route::resource('workouts', WorkoutController::class);
+Route::resource('workouts', WorkoutController::class);
+Route::get('contactUs', function () {
+    return view('contactUs');
+});
 
