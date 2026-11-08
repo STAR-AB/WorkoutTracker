@@ -9,6 +9,10 @@
     <title>Document</title>
 </head>
 <body>
+    <main>
+        <x-header>
+        </x-header>
     {{ $slot }}
+    </main>
 </body>
 </html>
