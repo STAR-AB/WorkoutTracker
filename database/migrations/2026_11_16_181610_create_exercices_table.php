@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('exercises' , function (Blueprint $table) {
-            $table->id('exercise_id')->primary();
-            $table->foreignId('user_id')->constrained('users' , 'id')->cascadeOnDelete();
+        Schema::create('exercices', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('category_id')->constrained('categories','id');
             $table->string('name');
-            $table->string('type');
+            $table->string('video_url')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
-       });
+        });
     }
 
     /**
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exercises');
+        Schema::dropIfExists('exercices');
     }
 };

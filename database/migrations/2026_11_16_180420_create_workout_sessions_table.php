@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workout_sessions' , function (Blueprint $table){
-            $table->id()->primary();
-            $table->foreignId('user_id');
+        Schema::create('workout_sessions', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users','id')->onDelete('cascade');
             $table->string('name');
             $table->date('date');
-            $table->text('notes')->nullable();
+            $table->time('start_time');
+            $table->decimal('duration', 10, 2)->nullable();
+            $table->decimal ('calories_burned', 10, 2)->nullable();
             $table->timestamps();
         });
     }
